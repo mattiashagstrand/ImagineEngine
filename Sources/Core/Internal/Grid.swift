@@ -130,6 +130,7 @@ internal final class Grid: Activatable {
     }
 
     func actorRectDidChange(_ actor: Actor, in scene: Scene) {
+        // TODO: Use collision shape to detect when actor leaves scene
         if actor.constraints.contains(.scene) {
             var adjustedPosition = actor.position
             adjustedPosition.x = min(scene.size.width - actor.rect.width / 2,
@@ -145,17 +146,15 @@ internal final class Grid: Activatable {
 
         updateTiles(for: actor, collisionDetector: performCollisionDetection)
 
-        let expandedRect = actor.rectForCollisionDetection.insetBy(dx: -1, dy: -1)
-
         for otherActor in actor.actorsInContact {
-            if !expandedRect.intersects(otherActor.rectForCollisionDetection) {
+            if !actor.shapeForCollisionDetection().intersects(otherActor.shapeForCollisionDetection()) {
                 actor.actorsInContact.remove(otherActor)
                 otherActor.actorsInContact.remove(actor)
             }
         }
 
         for block in actor.blocksInContact {
-            if !expandedRect.intersects(block.rect) {
+            if !actor.shapeForCollisionDetection().intersects(block.shapeForCollisionDetection()) {
                 actor.blocksInContact.remove(block)
                 block.actorsInContact.remove(actor)
             }
@@ -165,10 +164,8 @@ internal final class Grid: Activatable {
     func blockRectDidChange(_ block: Block) {
         updateTiles(for: block, collisionDetector: performCollisionDetection)
 
-        let expandedRect = block.rect.insetBy(dx: -1, dy: -1)
-
         for actor in block.actorsInContact {
-            if !actor.rectForCollisionDetection.intersects(expandedRect) {
+            if !actor.shapeForCollisionDetection().intersects(block.shapeForCollisionDetection()) {
                 actor.blocksInContact.remove(block)
                 block.actorsInContact.remove(actor)
             }
@@ -249,7 +246,11 @@ internal final class Grid: Activatable {
     }
 
     private func updateTiles<N: AnyNode & GridPlaceable>(for node: N, collisionDetector: ((N, Tile) -> Void)?) {
-        let rect = node.rect
+        var rect = node.rect
+        if let collidable = node as? Collidable {
+            rect = collidable.shapeForCollisionDetection().boundingBox
+        }
+
         let startIndex = Index(x: rect.minX, y: rect.minY)
         let endIndex = Index(x: rect.maxX, y: rect.maxY)
 
@@ -348,7 +349,7 @@ internal final class Grid: Activatable {
                 continue
             }
 
-            guard actor.rectForCollisionDetection.intersects(otherActor.rectForCollisionDetection) else {
+            guard actor.shapeForCollisionDetection().intersects(otherActor.shapeForCollisionDetection()) else {
                 continue
             }
 
@@ -361,7 +362,7 @@ internal final class Grid: Activatable {
                                  and block: Block,
                                  blockGroup: Group,
                                  mode: CollisionDetectionMode) {
-        guard actor.rectForCollisionDetection.intersects(block.rect) else {
+        guard actor.shapeForCollisionDetection().intersects(block.shapeForCollisionDetection()) else {
             return
         }
 
@@ -397,7 +398,7 @@ internal final class Grid: Activatable {
     }
 
     private func move(_ actor: Actor, awayFrom block: Block) {
-        let actorRect = actor.rectForCollisionDetection
+        let actorRect = actor.shapeForCollisionDetection().boundingBox
         let distanceX: Metric
         let distanceY: Metric
 

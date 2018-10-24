@@ -239,6 +239,18 @@
 		52E725921FCF68AB0099FCC7 /* Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E725911FCF68AB0099FCC7 /* Shadow.swift */; };
 		52E725931FCF68AB0099FCC7 /* Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E725911FCF68AB0099FCC7 /* Shadow.swift */; };
 		52E725941FCF68AB0099FCC7 /* Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E725911FCF68AB0099FCC7 /* Shadow.swift */; };
+		BE982E122148308B00211248 /* Shape.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE982E112148308B00211248 /* Shape.swift */; };
+		BE982E132148308B00211248 /* Shape.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE982E112148308B00211248 /* Shape.swift */; };
+		BE982E142148308B00211248 /* Shape.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE982E112148308B00211248 /* Shape.swift */; };
+		BE982E1621494C1700211248 /* ShapeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE982E1521494C1600211248 /* ShapeTests.swift */; };
+		BE982E1721494C1700211248 /* ShapeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE982E1521494C1600211248 /* ShapeTests.swift */; };
+		BE982E1821494C1700211248 /* ShapeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE982E1521494C1600211248 /* ShapeTests.swift */; };
+		BE982E1A2149614400211248 /* Collidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE982E192149614400211248 /* Collidable.swift */; };
+		BE982E1B2149614400211248 /* Collidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE982E192149614400211248 /* Collidable.swift */; };
+		BE982E1C2149614400211248 /* Collidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE982E192149614400211248 /* Collidable.swift */; };
+		BE982E1E2149655300211248 /* CollisionDebugPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE982E1D2149655300211248 /* CollisionDebugPlugin.swift */; };
+		BE982E1F2149655300211248 /* CollisionDebugPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE982E1D2149655300211248 /* CollisionDebugPlugin.swift */; };
+		BE982E202149655300211248 /* CollisionDebugPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE982E1D2149655300211248 /* CollisionDebugPlugin.swift */; };
 		C800CE2D1FA77F74008EE08D /* BundleProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C800CE2C1FA77F74008EE08D /* BundleProtocol.swift */; };
 		C800CE2E1FA77F74008EE08D /* BundleProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C800CE2C1FA77F74008EE08D /* BundleProtocol.swift */; };
 		C800CE301FA782EA008EE08D /* TextureFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = C800CE2F1FA782EA008EE08D /* TextureFormat.swift */; };
@@ -463,6 +475,10 @@
 		52E725911FCF68AB0099FCC7 /* Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shadow.swift; sourceTree = "<group>"; };
 		AD2FAA261CD0B6D800659CF4 /* ImagineEngine.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ImagineEngine.plist; sourceTree = "<group>"; };
 		AD2FAA281CD0B6E100659CF4 /* ImagineEngineTests.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ImagineEngineTests.plist; sourceTree = "<group>"; };
+		BE982E112148308B00211248 /* Shape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shape.swift; sourceTree = "<group>"; };
+		BE982E1521494C1600211248 /* ShapeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShapeTests.swift; sourceTree = "<group>"; };
+		BE982E192149614400211248 /* Collidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collidable.swift; sourceTree = "<group>"; };
+		BE982E1D2149655300211248 /* CollisionDebugPlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollisionDebugPlugin.swift; sourceTree = "<group>"; };
 		C800CE2C1FA77F74008EE08D /* BundleProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleProtocol.swift; sourceTree = "<group>"; };
 		C800CE2F1FA782EA008EE08D /* TextureFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextureFormat.swift; sourceTree = "<group>"; };
 		C800CE321FA788A5008EE08D /* BundleTextureImageLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleTextureImageLoaderTests.swift; sourceTree = "<group>"; };
@@ -555,6 +571,7 @@
 				026CE1C31FC06B7E00A0998B /* CameraEventCollection.swift */,
 				522CD6321F8D4512008DB43D /* CancellationToken.swift */,
 				522CD6331F8D4512008DB43D /* ClosureAction.swift */,
+				BE982E1D2149655300211248 /* CollisionDebugPlugin.swift */,
 				522CD6341F8D4512008DB43D /* Constraint.swift */,
 				5256F9762053D989003F3F88 /* Coordinate.swift */,
 				522CD6351F8D4512008DB43D /* Event.swift */,
@@ -583,6 +600,7 @@
 				522CD6491F8D4512008DB43D /* Scene.swift */,
 				522CD64A1F8D4512008DB43D /* SceneEventCollection.swift */,
 				52E725911FCF68AB0099FCC7 /* Shadow.swift */,
+				BE982E112148308B00211248 /* Shape.swift */,
 				523E5D0F1F9FEFBC0084792C /* SpriteSheet.swift */,
 				522CD64B1F8D4512008DB43D /* Texture.swift */,
 				C800CE2F1FA782EA008EE08D /* TextureFormat.swift */,
@@ -608,6 +626,7 @@
 				5204849F1FA356F80011D372 /* ClickGestureRecognizer-macOS.swift */,
 				522CD6521F8D4512008DB43D /* ClickPlugin.swift */,
 				522CD6531F8D4512008DB43D /* ClosureUpdatable.swift */,
+				BE982E192149614400211248 /* Collidable.swift */,
 				522CD6541F8D4512008DB43D /* DisplayLink-iOS+tvOS.swift */,
 				DD21B7421F92EB140034A7CE /* DisplayLink-macOS.swift */,
 				52C860371F8E3A4900C6C7A7 /* DisplayLinkProtocol.swift */,
@@ -733,6 +752,7 @@
 				527FC8051F8EB223006B1295 /* EventTests.swift */,
 				527FC80B1F8EBAAB006B1295 /* LabelTests.swift */,
 				52479F831F8E7B4E00D22A87 /* SceneTests.swift */,
+				BE982E1521494C1600211248 /* ShapeTests.swift */,
 				524B329E205488D50069A4A1 /* SpriteSheetTests.swift */,
 				C86A78BD1FA1B61A0099632B /* TextureManagerTests.swift */,
 				52479F891F8E804F00D22A87 /* TimelineTests.swift */,
@@ -1080,6 +1100,7 @@
 				525688CF1F9CF3E200F87786 /* PluginMock.swift in Sources */,
 				525688CB1F9CF3E200F87786 /* TimelineTests.swift in Sources */,
 				C800CE341FA788A5008EE08D /* BundleTextureImageLoaderTests.swift in Sources */,
+				BE982E1721494C1700211248 /* ShapeTests.swift in Sources */,
 				5204849E1FA353590011D372 /* ClickGestureRecognizerMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1088,6 +1109,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE982E202149655300211248 /* CollisionDebugPlugin.swift in Sources */,
 				5253C7D51FA4D57200D304B5 /* SceneEventCollection.swift in Sources */,
 				5253C7D21FA4D57200D304B5 /* Scalable.swift in Sources */,
 				5253C7B21FA4D56C00D304B5 /* View+MakeLayer.swift in Sources */,
@@ -1110,6 +1132,7 @@
 				5253C7C61FA4D57200D304B5 /* Group.swift in Sources */,
 				C80942711FA79934002B42A6 /* BundleProtocol.swift in Sources */,
 				5253C7A81FA4D56C00D304B5 /* Optional+GetOrSet.swift in Sources */,
+				BE982E1C2149614400211248 /* Collidable.swift in Sources */,
 				5253C7D91FA4D57200D304B5 /* TextureManager.swift in Sources */,
 				5253C7A61FA4D56C00D304B5 /* Layer.swift in Sources */,
 				5253C7DD1FA4D66500D304B5 /* Font+Default.swift in Sources */,
@@ -1137,6 +1160,7 @@
 				5253C7B11FA4D56C00D304B5 /* UpdateOutcome.swift in Sources */,
 				5253C7BA1FA4D57200D304B5 /* Block.swift in Sources */,
 				5253C7C21FA4D57200D304B5 /* EventToken.swift in Sources */,
+				BE982E142148308B00211248 /* Shape.swift in Sources */,
 				5253C7B41FA4D57200D304B5 /* ActionPerformer.swift in Sources */,
 				5256F9792053D989003F3F88 /* Coordinate.swift in Sources */,
 				5253C7C91FA4D57200D304B5 /* MetricAction.swift in Sources */,
@@ -1198,6 +1222,7 @@
 				C80942751FA7995B002B42A6 /* BundleMock.swift in Sources */,
 				5253C7E01FA4D97D00D304B5 /* ActorTests.swift in Sources */,
 				C80942731FA7994C002B42A6 /* BundleTextureImageLoaderTests.swift in Sources */,
+				BE982E1821494C1700211248 /* ShapeTests.swift in Sources */,
 				5253C7E11FA4D97D00D304B5 /* ActionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1206,6 +1231,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE982E1E2149655300211248 /* CollisionDebugPlugin.swift in Sources */,
 				522CD6A41F8D4521008DB43D /* View+MakeLayer.swift in Sources */,
 				522CD69D1F8D4521008DB43D /* PluginWrapper.swift in Sources */,
 				522CD6881F8D451D008DB43D /* Scalable.swift in Sources */,
@@ -1228,6 +1254,7 @@
 				522CD6941F8D4521008DB43D /* DisplayLink-iOS+tvOS.swift in Sources */,
 				522CD6991F8D4521008DB43D /* Layer.swift in Sources */,
 				522CD6981F8D4521008DB43D /* Grid.swift in Sources */,
+				BE982E1A2149614400211248 /* Collidable.swift in Sources */,
 				522CD6921F8D4521008DB43D /* ClickPlugin.swift in Sources */,
 				528B21511FA382B300CE9967 /* UpdatableCollection.swift in Sources */,
 				522CD6971F8D4521008DB43D /* GameView.swift in Sources */,
@@ -1255,6 +1282,7 @@
 				522CD69F1F8D4521008DB43D /* TextLayer.swift in Sources */,
 				522CD6A61F8D4526008DB43D /* GameWindow.swift in Sources */,
 				522CD6791F8D451D008DB43D /* Fadeable.swift in Sources */,
+				BE982E122148308B00211248 /* Shape.swift in Sources */,
 				522CD6871F8D451D008DB43D /* RotateAction.swift in Sources */,
 				5256F9772053D989003F3F88 /* Coordinate.swift in Sources */,
 				522CD6A51F8D4526008DB43D /* GameViewController-iOS+tvOS.swift in Sources */,
@@ -1316,6 +1344,7 @@
 				52479F8C1F8E818100D22A87 /* ActionTests.swift in Sources */,
 				52479F821F8E5A6F00D22A87 /* TextureImageLoaderMock.swift in Sources */,
 				C800CE331FA788A5008EE08D /* BundleTextureImageLoaderTests.swift in Sources */,
+				BE982E1621494C1700211248 /* ShapeTests.swift in Sources */,
 				5204849D1FA353590011D372 /* ClickGestureRecognizerMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1331,6 +1360,7 @@
 				520484A21FA357070011D372 /* ClickGestureRecognizer-macOS.swift in Sources */,
 				CDC7F0051FC419F300782197 /* TextureErrorHandler.swift in Sources */,
 				DD21B6F61F92E75A0034A7CE /* ActorEventCollection.swift in Sources */,
+				BE982E1F2149655300211248 /* CollisionDebugPlugin.swift in Sources */,
 				DD21B6F71F92E75A0034A7CE /* Movable.swift in Sources */,
 				DD21B7411F92EA610034A7CE /* ClickPlugin.swift in Sources */,
 				DD21B6F81F92E75A0034A7CE /* Optional+GetOrSet.swift in Sources */,
@@ -1355,6 +1385,7 @@
 				5209C84E208BEAC00033DB4A /* CALayer+Transform.swift in Sources */,
 				026CE1C51FC06B7E00A0998B /* CameraEventCollection.swift in Sources */,
 				DD21B7441F92EB1A0034A7CE /* DisplayLink-macOS.swift in Sources */,
+				BE982E132148308B00211248 /* Shape.swift in Sources */,
 				DD21B73D1F92E8CB0034A7CE /* Screen-macOS.swift in Sources */,
 				5253C7DE1FA4D7E400D304B5 /* Font+Default.swift in Sources */,
 				DD21B7061F92E75A0034A7CE /* Label.swift in Sources */,
@@ -1405,6 +1436,7 @@
 				DD21B72D1F92E75A0034A7CE /* DisplayLinkProtocol.swift in Sources */,
 				521054271FFD78B1002FCFB6 /* LabelEventCollection.swift in Sources */,
 				528B21521FA382B300CE9967 /* UpdatableCollection.swift in Sources */,
+				BE982E1B2149614400211248 /* Collidable.swift in Sources */,
 				DD21B72E1F92E75A0034A7CE /* ReplicatorLayer.swift in Sources */,
 				DD21B72F1F92E75A0034A7CE /* RepeatMode.swift in Sources */,
 			);

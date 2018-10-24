@@ -435,11 +435,6 @@ final class ActorTests: XCTestCase {
         actor.scale = 1.5
         actor.position = Point(x: 120, y: 120)
         XCTAssertEqual(numberOfCollisions, 5)
-
-        // Setting a hitbox should override the scaling effect.
-        actor.hitboxSize = Size(width: 25, height: 25)
-        actor.position = Point(x: 90, y: 90)
-        XCTAssertEqual(numberOfCollisions, 5)
     }
 
     func testObservingCollisionWithActorInGroup() {
@@ -696,27 +691,57 @@ final class ActorTests: XCTestCase {
         XCTAssertTrue(actor.isInContact(with: block))
     }
 
-    func testIsInContactWithBlockWithNoOverlappingConstraint() {
-        let blockSize = Size(width: 100, height: 100)
-        let blockGroup = Group.name("BlockInContact")
-        let block = Block(size: blockSize, textureCollectionName: "BlockInContact")
-        block.group = blockGroup
-        game.scene.add(block)
+    func testUsingCollisionShape() {
+        let otherActor = Actor(size: Size(width: 100, height: 100))
+        otherActor.collisionShape = Shape(rectangleAtX: -150, y: -150, width: 300, height: 300)
+        game.scene.add(otherActor)
 
-        actor.size = Size(width: 50, height: 50)
-        actor.position = Point(x: 300, y: 0)
+        actor.size = otherActor.size
+        actor.collisionShape = Shape(rectangleAtX: -150, y: -150, width: 300, height: 300)
 
-        actor.constraints.insert(.neverOverlapBlockInGroup(blockGroup))
-        actor.position = Point(x: 50, y: 0)
+        var numberOfCollisions = 0
 
-        // Since actor can't overlap the block, it should be right outside of it,
-        // but still be in contact
-        XCTAssertEqual(actor.position, Point(x: 75, y: 0))
-        XCTAssertTrue(actor.isInContact(with: block))
+        actor.events.collided(with: otherActor).observe {
+            numberOfCollisions += 1
+        }
 
-        // Moving the actor away should break the contact
-        actor.position.x += 1
-        XCTAssertFalse(actor.isInContact(with: block))
+        actor.position = Point(x: 350, y: 0)
+        XCTAssertEqual(numberOfCollisions, 0)
+
+        // Move the actor so that collision shapes collided but not the actors rects
+        actor.position = Point(x: 250, y: 0)
+        XCTAssertEqual(numberOfCollisions, 1)
+
+        // Remove collision shape of the actor and move it so that the rect does not collide
+        // with the collision shape of the other actor
+        actor.collisionShape = nil
+        actor.position = Point(x: 210, y: 0)
+        XCTAssertEqual(numberOfCollisions, 1)
+
+        // Move actor so that rect collides with the collision shape of the other actor
+        actor.position = Point(x: 190, y: 0)
+        XCTAssertEqual(numberOfCollisions, 2)
+    }
+
+    func testCollisionWhenRotating() {
+        let otherActor = Actor(size: Size(width: 100, height: 100))
+        otherActor.collisionShape = Shape(rectangleAtX: -50, y: -50, width: 100, height: 100)
+        otherActor.isCollisionShapeRotationEnabled = true
+        game.scene.add(otherActor)
+
+        actor.size = otherActor.size
+
+        var numberOfCollisions = 0
+
+        actor.events.collided(with: otherActor).observe {
+            numberOfCollisions += 1
+        }
+
+        actor.position = Point(x: 101, y: 0)
+        XCTAssertEqual(numberOfCollisions, 0)
+
+        otherActor.rotation = Metric.pi * 0.25
+        XCTAssertEqual(numberOfCollisions, 1)
     }
 }
 

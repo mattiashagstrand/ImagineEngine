@@ -21,7 +21,7 @@ import QuartzCore
  *  Imagine Engine automatically infer the names of all its parts.
  */
 public final class Block: Node<CALayer>, InstanceHashable, ActionPerformer, ZIndexed,
-                          Movable, Activatable, GridPlaceable {
+                          Movable, Activatable, GridPlaceable, Collidable {
     /// The index of the block on the z axis. 0 = implicit index.
     public var zIndex = 0 { didSet { layer.zPosition = Metric(zIndex) } }
     /// The position (center-point) of the block within its scene.
@@ -38,6 +38,7 @@ public final class Block: Node<CALayer>, InstanceHashable, ActionPerformer, ZInd
     private let content: Content
     private let textureScale: Int?
     private lazy var actionManager = ActionManager(object: self)
+    private var collisionDetectionShape: Shape?
 
     private init(size: Size, content: Content, textureScale: Int? = nil) {
         self.size = size
@@ -85,6 +86,12 @@ public final class Block: Node<CALayer>, InstanceHashable, ActionPerformer, ZInd
     internal func remove(from gridTile: Grid.Tile) {
         gridTile.blocks.remove(self)
         gridTiles.remove(gridTile)
+    }
+
+    // MARK: - Collidable
+
+    internal func shapeForCollisionDetection() -> Shape {
+        return collisionDetectionShape.get(orSet: collisionDetectionShapeFromRect())
     }
 
     // MARK: - Private
@@ -254,7 +261,12 @@ public final class Block: Node<CALayer>, InstanceHashable, ActionPerformer, ZInd
 
     private func positionDidChange() {
         layer.position = position
+        collisionDetectionShape = nil
         scene?.blockRectDidChange(self)
+    }
+
+    private func collisionDetectionShapeFromRect() -> Shape {
+        return Shape(rectangle: rect)
     }
 }
 

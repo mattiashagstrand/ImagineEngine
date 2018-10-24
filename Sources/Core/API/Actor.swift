@@ -29,7 +29,7 @@ import QuartzCore
  */
 public final class Actor: Node<CALayer>, InstanceHashable, ActionPerformer,
                           Pluggable, ZIndexed, Movable, Rotatable, Scalable,
-                          Fadeable, Activatable, GridPlaceable {
+                          Fadeable, Activatable, GridPlaceable, Collidable {
     /// The scene that the actor currently belongs to.
     override public internal(set) weak var scene: Scene? { didSet { sceneDidChange() } }
     /// A collection of events that can be used to observe the actor.
@@ -44,7 +44,7 @@ public final class Actor: Node<CALayer>, InstanceHashable, ActionPerformer,
     public var rotation = Metric() { didSet { rotationDidChange(from: oldValue) } }
     /// Any radius that should be applied to the corners of the actor. Default = 0.
     public var cornerRadius = Metric() { didSet { layer.cornerRadius = cornerRadius } }
-    /// The scale the actor gets rendered at. Affects collision detection unless a hitboxSize is set.
+    /// The scale the actor gets rendered at. Affects collision detection unless a collisionShape is set.
     public var scale: Metric = 1 { didSet { scaleDidChange(from: oldValue) } }
     /// The velocity of the actor. Used for continous directional movement.
     public var velocity = Vector() { didSet { velocityDidChange(from: oldValue) } }
@@ -60,8 +60,6 @@ public final class Actor: Node<CALayer>, InstanceHashable, ActionPerformer,
     public var animation: Animation? { didSet { animationDidChange(from: oldValue) } }
     /// Any prefix that should be prepended to the names of all textures loaded for the actor
     public var textureNamePrefix: String?
-    /// Any explicit size of the actor's hitbox (for collision detection). `nil` = the actor's `size`.
-    public var hitboxSize: Size?
     /// Whether the actor is able to participate in collisions.
     public var isCollisionDetectionEnabled = true
     /// Whether the actor responds to hit testing.
@@ -70,6 +68,14 @@ public final class Actor: Node<CALayer>, InstanceHashable, ActionPerformer,
     public var constraints = Set<Constraint>()
     /// Any logical group that the actor is a part of. Can be used for events & collisions.
     public var group: Group?
+    /// Shape used for collision detection. Specified in the coordinate system of this actor and with no rotation.
+    /// If this property is set to `nil` the actor's `rect` is used for collision detection.
+    /// Defaulf value is `nil`.
+    public var collisionShape: Shape? { didSet { collisionDetectionShape = nil } }
+    /// Whether the collision shape is rotated to match the rotation of the actor when performing collision detection.
+    /// Only used if `collisionShape` is not `nil`. Note that setting this to `true` may impact performance.
+    /// Defaulf value is `false`.
+    public var isCollisionShapeRotationEnabled: Bool = false { didSet { collisionDetectionShape = nil } }
 
     internal lazy var actorsInContact = Set<Actor>()
     internal lazy var blocksInContact = Set<Block>()
@@ -81,6 +87,7 @@ public final class Actor: Node<CALayer>, InstanceHashable, ActionPerformer,
     private var velocityActionToken: ActionToken?
     private var animationActionToken: ActionToken?
     private var isUpdatingPosition = false
+    private var collisionDetectionShape: Shape?
 
     // MARK: - Initializer
 
@@ -155,6 +162,12 @@ public final class Actor: Node<CALayer>, InstanceHashable, ActionPerformer,
     internal func remove(from gridTile: Grid.Tile) {
         gridTile.actors.remove(self)
         gridTiles.remove(gridTile)
+    }
+
+    // MARK: - Collidable
+
+    internal func shapeForCollisionDetection() -> Shape {
+        return collisionDetectionShape.get(orSet: makeCollisionDetectionShape())
     }
 
     // MARK: - Internal
@@ -238,6 +251,7 @@ public final class Actor: Node<CALayer>, InstanceHashable, ActionPerformer,
             return
         }
 
+        collisionDetectionShape = nil
         scene?.actorRectDidChange(self)
     }
 
@@ -322,6 +336,20 @@ public final class Actor: Node<CALayer>, InstanceHashable, ActionPerformer,
     private func applyLayerTransform() {
         layer.applyTransform(withRotation: rotation, scale: scale, mirroring: mirroring)
     }
+
+    private func makeCollisionDetectionShape() -> Shape {
+        return collisionShape.flatMap(adjustCollisionDetectionShape) ?? collisionDetectionShapeFromRect()
+    }
+
+    private func adjustCollisionDetectionShape(_ collisionDetectionShape: Shape) -> Shape {
+        let rotatedCollisionDetectionShape = (isCollisionShapeRotationEnabled ?
+            collisionDetectionShape.rotated(by: rotation) : collisionDetectionShape)
+        return rotatedCollisionDetectionShape.moved(byX: position.x, y: position.y)
+    }
+
+    private func collisionDetectionShapeFromRect() -> Shape {
+        return Shape(rectangle: rect)
+    }
 }
 
 public extension Actor {
@@ -349,18 +377,5 @@ public extension Actor {
     /// Makes the actor start playing an animation as an action
     func playAnimation(_ animation: Animation) -> ActionToken {
         return perform(AnimationAction(animation: animation))
-    }
-}
-
-internal extension Actor {
-    var rectForCollisionDetection: Rect {
-        if let hitboxSize = hitboxSize {
-            var rect = Rect(origin: position, size: hitboxSize)
-            rect.origin.x -= hitboxSize.width / 2
-            rect.origin.y -= hitboxSize.height / 2
-            return rect
-        }
-
-        return rect
     }
 }

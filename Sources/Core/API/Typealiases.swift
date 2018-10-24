@@ -13,6 +13,7 @@ public typealias Size = CGSize
 public typealias Vector = CGVector
 public typealias Metric = CGFloat
 public typealias Path = CGPath
+public typealias MutablePath = CGMutablePath
 
 #if os(macOS)
 import AppKit
