@@ -248,9 +248,6 @@
 		BE982E1A2149614400211248 /* Collidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE982E192149614400211248 /* Collidable.swift */; };
 		BE982E1B2149614400211248 /* Collidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE982E192149614400211248 /* Collidable.swift */; };
 		BE982E1C2149614400211248 /* Collidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE982E192149614400211248 /* Collidable.swift */; };
-		BE982E1E2149655300211248 /* CollisionDebugPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE982E1D2149655300211248 /* CollisionDebugPlugin.swift */; };
-		BE982E1F2149655300211248 /* CollisionDebugPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE982E1D2149655300211248 /* CollisionDebugPlugin.swift */; };
-		BE982E202149655300211248 /* CollisionDebugPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE982E1D2149655300211248 /* CollisionDebugPlugin.swift */; };
 		C800CE2D1FA77F74008EE08D /* BundleProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C800CE2C1FA77F74008EE08D /* BundleProtocol.swift */; };
 		C800CE2E1FA77F74008EE08D /* BundleProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C800CE2C1FA77F74008EE08D /* BundleProtocol.swift */; };
 		C800CE301FA782EA008EE08D /* TextureFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = C800CE2F1FA782EA008EE08D /* TextureFormat.swift */; };
@@ -478,7 +475,6 @@
 		BE982E112148308B00211248 /* Shape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shape.swift; sourceTree = "<group>"; };
 		BE982E1521494C1600211248 /* ShapeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShapeTests.swift; sourceTree = "<group>"; };
 		BE982E192149614400211248 /* Collidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collidable.swift; sourceTree = "<group>"; };
-		BE982E1D2149655300211248 /* CollisionDebugPlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollisionDebugPlugin.swift; sourceTree = "<group>"; };
 		C800CE2C1FA77F74008EE08D /* BundleProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleProtocol.swift; sourceTree = "<group>"; };
 		C800CE2F1FA782EA008EE08D /* TextureFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextureFormat.swift; sourceTree = "<group>"; };
 		C800CE321FA788A5008EE08D /* BundleTextureImageLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleTextureImageLoaderTests.swift; sourceTree = "<group>"; };
@@ -571,7 +567,6 @@
 				026CE1C31FC06B7E00A0998B /* CameraEventCollection.swift */,
 				522CD6321F8D4512008DB43D /* CancellationToken.swift */,
 				522CD6331F8D4512008DB43D /* ClosureAction.swift */,
-				BE982E1D2149655300211248 /* CollisionDebugPlugin.swift */,
 				522CD6341F8D4512008DB43D /* Constraint.swift */,
 				5256F9762053D989003F3F88 /* Coordinate.swift */,
 				522CD6351F8D4512008DB43D /* Event.swift */,
@@ -1109,7 +1104,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE982E202149655300211248 /* CollisionDebugPlugin.swift in Sources */,
 				5253C7D51FA4D57200D304B5 /* SceneEventCollection.swift in Sources */,
 				5253C7D21FA4D57200D304B5 /* Scalable.swift in Sources */,
 				5253C7B21FA4D56C00D304B5 /* View+MakeLayer.swift in Sources */,
@@ -1231,7 +1225,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE982E1E2149655300211248 /* CollisionDebugPlugin.swift in Sources */,
 				522CD6A41F8D4521008DB43D /* View+MakeLayer.swift in Sources */,
 				522CD69D1F8D4521008DB43D /* PluginWrapper.swift in Sources */,
 				522CD6881F8D451D008DB43D /* Scalable.swift in Sources */,
@@ -1360,7 +1353,6 @@
 				520484A21FA357070011D372 /* ClickGestureRecognizer-macOS.swift in Sources */,
 				CDC7F0051FC419F300782197 /* TextureErrorHandler.swift in Sources */,
 				DD21B6F61F92E75A0034A7CE /* ActorEventCollection.swift in Sources */,
-				BE982E1F2149655300211248 /* CollisionDebugPlugin.swift in Sources */,
 				DD21B6F71F92E75A0034A7CE /* Movable.swift in Sources */,
 				DD21B7411F92EA610034A7CE /* ClickPlugin.swift in Sources */,
 				DD21B6F81F92E75A0034A7CE /* Optional+GetOrSet.swift in Sources */,
