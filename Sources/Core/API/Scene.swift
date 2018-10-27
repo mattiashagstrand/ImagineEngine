@@ -122,6 +122,12 @@ open class Scene: Pluggable, Activatable {
         layer.addSublayer(label.layer)
     }
 
+    /// Add a tile map to the scene
+    public func add(_ tileMap: TileMap) {
+        layer.addSublayer(tileMap.layer)
+        game.map(tileMap.activate)
+    }
+
     /// Get all actors which rects intersect a given point
     public func actors(at point: Point) -> [Actor] {
         return grid.actors(at: point)

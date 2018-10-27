@@ -95,18 +95,6 @@ internal extension SpriteSheet {
         let coordinate = self.coordinate(at: index, rowLength: rowLength, offsetBy: start)
         return frame(at: coordinate)
     }
-}
-
-private extension SpriteSheet {
-    func coordinate(at index: Int, rowLength: Int, offsetBy offset: Coordinate?) -> Coordinate {
-        let y = index / rowLength
-        let x = index - y * rowLength
-
-        return Coordinate(
-            x: (offset?.x ?? 0) + x,
-            y: (offset?.y ?? 0) + y
-        )
-    }
 
     func frame(at coordinate: Coordinate) -> Animation.Frame {
         let rowLength = frameCount / rowCount
@@ -124,5 +112,17 @@ private extension SpriteSheet {
         contentRect.size.height = 1 / Metric(rowCount)
 
         return Animation.Frame(texture: texture, contentRect: contentRect)
+    }
+}
+
+private extension SpriteSheet {
+    func coordinate(at index: Int, rowLength: Int, offsetBy offset: Coordinate?) -> Coordinate {
+        let y = index / rowLength
+        let x = index - y * rowLength
+
+        return Coordinate(
+            x: (offset?.x ?? 0) + x,
+            y: (offset?.y ?? 0) + y
+        )
     }
 }

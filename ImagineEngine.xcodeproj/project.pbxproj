@@ -239,6 +239,9 @@
 		52E725921FCF68AB0099FCC7 /* Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E725911FCF68AB0099FCC7 /* Shadow.swift */; };
 		52E725931FCF68AB0099FCC7 /* Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E725911FCF68AB0099FCC7 /* Shadow.swift */; };
 		52E725941FCF68AB0099FCC7 /* Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E725911FCF68AB0099FCC7 /* Shadow.swift */; };
+		BE57F6272183ADD400096699 /* TileMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE57F6262183ADD400096699 /* TileMap.swift */; };
+		BE57F6282183ADD400096699 /* TileMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE57F6262183ADD400096699 /* TileMap.swift */; };
+		BE57F6292183ADD400096699 /* TileMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE57F6262183ADD400096699 /* TileMap.swift */; };
 		C800CE2D1FA77F74008EE08D /* BundleProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C800CE2C1FA77F74008EE08D /* BundleProtocol.swift */; };
 		C800CE2E1FA77F74008EE08D /* BundleProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C800CE2C1FA77F74008EE08D /* BundleProtocol.swift */; };
 		C800CE301FA782EA008EE08D /* TextureFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = C800CE2F1FA782EA008EE08D /* TextureFormat.swift */; };
@@ -463,6 +466,7 @@
 		52E725911FCF68AB0099FCC7 /* Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shadow.swift; sourceTree = "<group>"; };
 		AD2FAA261CD0B6D800659CF4 /* ImagineEngine.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ImagineEngine.plist; sourceTree = "<group>"; };
 		AD2FAA281CD0B6E100659CF4 /* ImagineEngineTests.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ImagineEngineTests.plist; sourceTree = "<group>"; };
+		BE57F6262183ADD400096699 /* TileMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileMap.swift; sourceTree = "<group>"; };
 		C800CE2C1FA77F74008EE08D /* BundleProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleProtocol.swift; sourceTree = "<group>"; };
 		C800CE2F1FA782EA008EE08D /* TextureFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextureFormat.swift; sourceTree = "<group>"; };
 		C800CE321FA788A5008EE08D /* BundleTextureImageLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleTextureImageLoaderTests.swift; sourceTree = "<group>"; };
@@ -588,6 +592,7 @@
 				C800CE2F1FA782EA008EE08D /* TextureFormat.swift */,
 				52479F7F1F8E58E200D22A87 /* TextureImageLoader.swift */,
 				522CD6601F8D4512008DB43D /* TextureManager.swift */,
+				BE57F6262183ADD400096699 /* TileMap.swift */,
 				522CD64C1F8D4512008DB43D /* Timeline.swift */,
 				522CD64D1F8D4512008DB43D /* Typealiases.swift */,
 				52B8065D1FB373BC0042FBA7 /* ZIndexed.swift */,
@@ -1113,6 +1118,7 @@
 				5253C7D91FA4D57200D304B5 /* TextureManager.swift in Sources */,
 				5253C7A61FA4D56C00D304B5 /* Layer.swift in Sources */,
 				5253C7DD1FA4D66500D304B5 /* Font+Default.swift in Sources */,
+				BE57F6292183ADD400096699 /* TileMap.swift in Sources */,
 				5253C7D71FA4D57200D304B5 /* Texture.swift in Sources */,
 				521054281FFD78B1002FCFB6 /* LabelEventCollection.swift in Sources */,
 				5209C84F208BEAC00033DB4A /* CALayer+Transform.swift in Sources */,
@@ -1231,6 +1237,7 @@
 				522CD6921F8D4521008DB43D /* ClickPlugin.swift in Sources */,
 				528B21511FA382B300CE9967 /* UpdatableCollection.swift in Sources */,
 				522CD6971F8D4521008DB43D /* GameView.swift in Sources */,
+				BE57F6272183ADD400096699 /* TileMap.swift in Sources */,
 				522CD6911F8D4521008DB43D /* Activatable.swift in Sources */,
 				521054261FFD78B1002FCFB6 /* LabelEventCollection.swift in Sources */,
 				5209C84D208BEAC00033DB4A /* CALayer+Transform.swift in Sources */,
@@ -1340,6 +1347,7 @@
 				DD21B6FB1F92E75A0034A7CE /* ClosureUpdatable.swift in Sources */,
 				DD21B74B1F92ED6B0034A7CE /* GameWindowController.swift in Sources */,
 				DD21B6FC1F92E75A0034A7CE /* LoadedTexture.swift in Sources */,
+				BE57F6282183ADD400096699 /* TileMap.swift in Sources */,
 				DD21B6FD1F92E75A0034A7CE /* Block.swift in Sources */,
 				C800CE2E1FA77F74008EE08D /* BundleProtocol.swift in Sources */,
 				DD21B6FE1F92E75A0034A7CE /* Updatable.swift in Sources */,
