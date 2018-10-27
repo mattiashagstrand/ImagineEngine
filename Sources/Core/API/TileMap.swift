@@ -42,24 +42,7 @@ public final class TileMap: Node<CALayer>, ZIndexed, Activatable, Movable {
                 continue
             }
 
-            let y = tileIndex / map.width
-            let x = tileIndex - y * map.width
-            let tileLayer = CALayer()
-
-            tileLayer.contents = loadedTexture.image
-            tileLayer.contentsRect = frame.contentRect
-            tileLayer.anchorPoint = Point(x: 0, y: 0)
-            tileLayer.bounds.size.width = loadedTexture.size.width * frame.contentRect.width
-            tileLayer.bounds.size.height = loadedTexture.size.height * frame.contentRect.height
-            tileLayer.position.x = Metric(x) * tileLayer.bounds.size.width
-
-            #if os(macOS)
-            let mapHeight = tileLayer.bounds.size.height * Metric(map.height)
-            tileLayer.position.y = mapHeight - Metric(y) * (tileLayer.bounds.size.height - 1)
-            #else
-            tileLayer.position.y = Metric(y) * tileLayer.bounds.size.height
-            #endif
-
+            let tileLayer = makeTileLayer(for: loadedTexture, in: frame, atTileIndex: tileIndex)
             layer.addSublayer(tileLayer)
         }
 
@@ -68,6 +51,29 @@ public final class TileMap: Node<CALayer>, ZIndexed, Activatable, Movable {
             layer.bounds.size.width = Metric(map.width) * tileLayerSize.width
             layer.bounds.size.height = Metric(map.height) * tileLayerSize.height
         }
+    }
+
+    private func makeTileLayer(for loadedTexture: LoadedTexture, in frame: Animation.Frame, atTileIndex tileIndex: Int) -> CALayer {
+        let y = tileIndex / map.width
+        let x = tileIndex - y * map.width
+
+        let tileLayer = CALayer()
+
+        tileLayer.contents = loadedTexture.image
+        tileLayer.contentsRect = frame.contentRect
+        tileLayer.anchorPoint = Point(x: 0, y: 0)
+        tileLayer.bounds.size.width = loadedTexture.size.width * frame.contentRect.width
+        tileLayer.bounds.size.height = loadedTexture.size.height * frame.contentRect.height
+        tileLayer.position.x = Metric(x) * tileLayer.bounds.size.width
+
+        #if os(macOS)
+        let mapHeight = tileLayer.bounds.size.height * Metric(map.height)
+        tileLayer.position.y = mapHeight - Metric(y) * (tileLayer.bounds.size.height - 1)
+        #else
+        tileLayer.position.y = Metric(y) * tileLayer.bounds.size.height
+        #endif
+
+        return tileLayer
     }
 
     private func positionDidChange() {
