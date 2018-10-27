@@ -33,10 +33,10 @@ public final class TileMap: Node<CALayer>, ZIndexed, Activatable, Movable {
     // MARK: - Private
 
     private func addSublayers(using textureManager: TextureManager) {
-        for (tileIndex, tileCoordinate) in map.tiles.enumerated() {
-            guard let tileCoordinate = tileCoordinate else { continue }
+        for (tileIndex, tile) in map.tiles.enumerated() {
+            guard let tile = tile else { continue }
 
-            let frame = spriteSheet.frame(at: tileCoordinate)
+            let frame = tile.spriteSheet.frame(at: tile.coordinate)
 
             guard let loadedTexture = textureManager.load(frame.texture, namePrefix: nil, scale: textureScale) else {
                 continue
@@ -89,12 +89,22 @@ public extension TileMap {
         public var height: Int
         /// The coordinate in the sprite sheet to use to get the sprite for each tile in the map.
         /// The map is filled starting in the top left corner.
-        public var tiles: [Coordinate?]
+        public var tiles: [Tile?]
 
-        public init(width: Int, height: Int, tiles: [Coordinate?] = []) {
+        public init(width: Int, height: Int, tiles: [Tile?] = []) {
             self.width = width
             self.height = height
             self.tiles = tiles
+        }
+    }
+
+    struct Tile {
+        public var spriteSheet: SpriteSheet
+        public var coordinate: Coordinate
+
+        public init(spriteSheet: SpriteSheet, coordinate: Coordinate) {
+            self.spriteSheet = spriteSheet
+            self.coordinate = coordinate
         }
     }
 }
