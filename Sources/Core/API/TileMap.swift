@@ -8,13 +8,11 @@ public final class TileMap: Node<CALayer>, ZIndexed, Activatable, Movable {
     /// The position (center-point) of the tile map within its scene.
     public var position = Point() { didSet { positionDidChange() } }
 
-    private let spriteSheet: SpriteSheet
     private let map: Map
     private let textureScale: Int?
 
     // MARK: - Initializer
-    public init(spriteSheet: SpriteSheet, map: Map, textureScale: Int? = nil) {
-        self.spriteSheet = spriteSheet
+    public init(map: Map, textureScale: Int? = nil) {
         self.map = map
         self.textureScale = textureScale
 
