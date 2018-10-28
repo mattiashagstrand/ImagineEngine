@@ -10,6 +10,7 @@ internal final class Grid: Activatable {
     private(set) var actors = Set<Actor>()
     private(set) var blocks = Set<Block>()
     private(set) var labels = Set<Label>()
+    private(set) var tileMaps = Set<TileMap>()
     private var tiles = [Index : Tile]()
     private var nextZIndex = 0
     private weak var game: Game?
@@ -98,6 +99,25 @@ internal final class Grid: Activatable {
 
         label.deactivate()
         label.gridTiles.forEach(label.remove)
+    }
+
+    func add(_ tileMap: TileMap, in scene: Scene) {
+        guard tileMaps.insert(tileMap).inserted else {
+            return
+        }
+
+        assignZIndexIfNeeded(to: tileMap)
+
+        tileMap.scene = scene
+        game.map(tileMap.activate)
+    }
+
+    func remove(_ tileMap: TileMap) {
+        guard tileMaps.remove(tileMap) != nil else {
+            return
+        }
+
+        tileMap.deactivate()
     }
 
     func actors(at point: Point) -> [Actor] {
@@ -201,6 +221,10 @@ internal final class Grid: Activatable {
         for label in labels {
             label.remove()
         }
+
+        for tileMap in tileMaps {
+            tileMap.remove()
+        }
     }
 
     // MARK: - Activatable
@@ -219,6 +243,10 @@ internal final class Grid: Activatable {
         for label in labels {
             label.activate(in: game)
         }
+
+        for tileMap in tileMaps {
+            tileMap.activate(in: game)
+        }
     }
 
     func deactivate() {
@@ -234,6 +262,10 @@ internal final class Grid: Activatable {
 
         for label in labels {
             label.deactivate()
+        }
+
+        for tileMap in tileMaps {
+            tileMap.deactivate()
         }
     }
 

@@ -215,6 +215,10 @@ open class Scene: Pluggable, Activatable {
         grid.remove(label)
     }
 
+    internal func remove(_ tileMap: TileMap) {
+        grid.remove(tileMap)
+    }
+
     internal func blockRectDidChange(_ block: Block) {
         grid.blockRectDidChange(block)
     }

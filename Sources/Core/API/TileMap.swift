@@ -2,7 +2,7 @@ import Foundation
 import QuartzCore
 
 
-public final class TileMap: Node<CALayer>, ZIndexed, Activatable, Movable {
+public final class TileMap: Node<CALayer>, InstanceHashable, ZIndexed, Activatable, Movable {
     /// The index of the tile map on the z axis. 0 = implicit index.
     public var zIndex = 0 { didSet { layer.zPosition = Metric(zIndex) } }
     /// The position (center-point) of the tile map within its scene.
@@ -17,6 +17,15 @@ public final class TileMap: Node<CALayer>, ZIndexed, Activatable, Movable {
         self.textureScale = textureScale
 
         super.init(layer: Layer())
+    }
+
+    // MARK: - Public
+
+    /// Remove this block from its scene
+    public func remove() {
+        scene?.remove(self)
+        scene = nil
+        layer.removeFromSuperlayer()
     }
 
     // MARK: - Activatable
